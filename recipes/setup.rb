@@ -10,13 +10,21 @@ end
 
 package 'ntp'
 
+#node['ipaddress']
+#node['memory']['total']
+
+# print statement 'I have 4 apples'
+apple_count = 4
+
+puts "I have #{apple_count} apples"
+
 file '/etc/motd' do
-  content 'This server is the property of Crina
-  HOSTNAME: localhost.localdomain
-  IPADDRESS: 10.0.2.15
-  CPU: 1896.003
-  MEMORY: 1016860
-'
+  content "This server is the property of Crina
+  HOSTNAME: #{node['hostname']}
+  IPADDRESS: #{node['ipaddress']}
+  CPU: #{node['cpu']['0']['mhz']}
+  MEMORY: #{node['memory']['total']}
+"
   action :create
   owner 'root'
   group 'root'
